@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="x-apple-disable-message-reformatting">
+  <!-- Dark mode protection: força esquema de cor pra manter brand consistente -->
+  <meta name="color-scheme" content="light only">
+  <meta name="supported-color-schemes" content="light only">
   <title>⏰ Último dia — 30% OFF acaba hoje</title>
 
   <!--
@@ -24,17 +27,38 @@
     table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
     img { border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; }
     body { background-color: #ebebee; font-family: Inter, Arial, Helvetica, sans-serif; }
+    a { color: inherit; }
 
+    /* Mobile first — quebras escalonadas */
     @media only screen and (max-width: 620px) {
-      .wrap    { padding: 0 !important; }
-      .w600    { width: 100% !important; }
+      .wrap      { padding: 0 !important; }
+      .w600      { width: 100% !important; max-width: 100% !important; }
+      .hero-img  { height: 180px !important; }
+      .hero-pad  { padding: 20px 22px 26px !important; }
       .hero-pre  { font-size: 22px !important; }
-      .hero-h1   { font-size: 42px !important; }
-      .bpad    { padding: 24px 20px !important; }
-      .fcol    { display: block !important; width: 100% !important; padding-right: 0 !important; padding-left: 0 !important; padding-bottom: 20px !important; }
-      .fsep    { display: none !important; }
-      .cta     { padding: 14px 24px !important; font-size: 13px !important; }
+      .hero-h1   { font-size: 40px !important; }
+      .bpad      { padding: 22px 18px 28px !important; }
+      .offer-pad { padding: 16px 18px !important; }
+      .offer-h   { font-size: 28px !important; }
+      .offer-l   { font-size: 13px !important; }
+      .callout-pad { padding: 18px 18px !important; }
+      .callout-big { font-size: 48px !important; }
+      .cta       { padding: 14px 22px !important; font-size: 12px !important; letter-spacing: 0.1em !important; }
+      .fpad      { padding: 28px 22px 22px !important; }
+      .fcol      { display: block !important; width: 100% !important;
+                   padding: 0 0 22px 0 !important; border: 0 !important; }
+      .fcol-r    { padding: 22px 0 0 0 !important; border-top: 1px solid rgba(245,231,218,0.14) !important; }
+      .fsep      { display: none !important; }
+      .social-pad { padding: 18px 0 8px !important; }
     }
+
+    /* Dark mode protection — Apple Mail/Outlook respeitam color-scheme */
+    @media (prefers-color-scheme: dark) {
+      .force-light { background-color: #F5E7DA !important; color: #1F1410 !important; }
+      .force-bordo { background-color: #6F293B !important; }
+    }
+    [data-ogsc] .force-light { background-color: #F5E7DA !important; color: #1F1410 !important; }
+    [data-ogsc] .force-bordo { background-color: #6F293B !important; }
   </style>
 </head>
 <body style="margin:0;padding:0;background-color:#ebebee;">
@@ -71,6 +95,7 @@
           <tr>
             <td style="padding:0;font-size:0;line-height:0;background-color:#6F293B;">
               <img
+                class="hero-img"
                 src="assets/foto-hero.jpg"
                 alt="Mini tortas Cia da Torta"
                 width="600"
@@ -83,7 +108,8 @@
 
           <!-- HERO TEXTO + CTA — tudo no mesmo bloco bordô, acima da dobra -->
           <tr>
-            <td valign="top" align="left" style="background-color:#6F293B;padding:22px 36px 28px;">
+            <td valign="top" align="left" class="hero-pad force-bordo"
+                style="background-color:#6F293B;padding:22px 36px 28px;">
 
               <p style="font-family:Inter,Arial,sans-serif;font-size:11px;font-weight:800;
                          letter-spacing:0.14em;color:#FCB034;text-transform:uppercase;
@@ -117,7 +143,7 @@
 
           <!-- BODY -->
           <tr>
-            <td class="bpad" style="background-color:#F5E7DA;padding:20px 36px 28px;text-align:center;">
+            <td class="bpad force-light" style="background-color:#F5E7DA;padding:20px 36px 28px;text-align:center;">
 
               <p style="font-family:Inter,Arial,sans-serif;font-size:16px;font-weight:400;
                          line-height:1.6;color:#1F1410;margin:0 0 20px;">
@@ -203,18 +229,24 @@
               </table>
 
               <!-- Callout -->
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation"
-                     style="margin-bottom:32px;">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation">
                 <tr>
-                  <td style="background-color:#EF3824;border-radius:12px;padding:22px 28px;text-align:center;">
+                  <td class="callout-pad"
+                      style="background-color:#EF3824;border-radius:12px;padding:24px 28px;text-align:center;">
                     <p style="font-family:Inter,Arial,sans-serif;font-size:11px;font-weight:800;
-                               letter-spacing:0.14em;color:#ffffff;text-transform:uppercase;margin:0 0 6px;opacity:0.85;">
-                      ⏰ só hoje — primeira compra no Pix = até
+                               letter-spacing:0.14em;color:#ffffff;text-transform:uppercase;margin:0 0 8px;opacity:0.9;">
+                      ⏰ só hoje · primeira compra no Pix = até
                     </p>
-                    <p style="font-family:'Titan One',Impact,sans-serif;font-size:60px;
-                               font-weight:400;color:#FCB034;line-height:1;letter-spacing:-0.01em;margin:0;">45% OFF</p>
+                    <p class="callout-big"
+                       style="font-family:'Titan One',Impact,sans-serif;font-size:60px;
+                              font-weight:400;color:#FCB034;line-height:1;letter-spacing:-0.01em;margin:0;">45% OFF</p>
                   </td>
                 </tr>
+              </table>
+
+              <!-- Espaçador callout → CTA (bulletproof Outlook) -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation">
+                <tr><td height="36" style="height:36px;font-size:0;line-height:0;">&nbsp;</td></tr>
               </table>
 
               <!-- CTA principal -->
@@ -222,37 +254,73 @@
                  href="https://ciadatorta.com.br/?utm_source=email&utm_medium=email&utm_campaign=relancamento-ultimo-dia&utm_content=hero-cta"
                  style="display:inline-block;font-family:Inter,Arial,sans-serif;
                         font-weight:900;font-size:14px;letter-spacing:0.14em;
-                        text-transform:uppercase;padding:18px 32px;border-radius:999px;
-                        background-color:#6F293B;color:#FCB034;text-decoration:none;">
+                        text-transform:uppercase;padding:18px 36px;border-radius:999px;
+                        background-color:#6F293B;color:#FCB034;text-decoration:none;
+                        mso-padding-alt:0;">
                 Garantir minha tortinha →
               </a>
+
+              <!-- Espaçador após CTA -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation">
+                <tr><td height="12" style="height:12px;font-size:0;line-height:0;">&nbsp;</td></tr>
+              </table>
 
             </td>
           </tr>
 
 
-          <!-- FOOTER -->
+          <!-- FOOTER — mobile-first, stacking limpo, emoji da marca em vez de SVG -->
           <tr>
-            <td style="background-color:#6F293B;padding:36px 32px 28px;">
+            <td class="fpad force-bordo" style="background-color:#6F293B;padding:36px 32px 28px;">
+
+              <!-- Social row (emoji oficial da marca, alta legibilidade em qualquer cliente) -->
+              <table class="social-pad" width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation"
+                     style="margin-bottom:28px;">
+                <tr>
+                  <td align="center" style="text-align:center;">
+                    <a href="https://instagram.com/ciadatortaoficial?utm_source=email&utm_medium=email&utm_campaign=relancamento-ultimo-dia&utm_content=footer-instagram"
+                       style="display:inline-block;margin:0 10px;text-decoration:none;
+                              font-family:Inter,Arial,sans-serif;font-size:14px;font-weight:700;
+                              color:#FCB034;letter-spacing:0.02em;">
+                      📷&nbsp;@ciadatortaoficial
+                    </a>
+                    <span style="display:inline-block;color:rgba(245,231,218,0.25);margin:0 4px;">·</span>
+                    <a href="https://wa.me/5511924565515?utm_source=email&utm_medium=email&utm_campaign=relancamento-ultimo-dia&utm_content=footer-wa-icon"
+                       style="display:inline-block;margin:0 10px;text-decoration:none;
+                              font-family:Inter,Arial,sans-serif;font-size:14px;font-weight:700;
+                              color:#FCB034;letter-spacing:0.02em;">
+                      💬&nbsp;WhatsApp
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Divider -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation"
+                     style="margin:0 0 28px;">
+                <tr>
+                  <td style="border-top:1px solid rgba(245,231,218,0.14);font-size:0;line-height:0;height:1px;">&nbsp;</td>
+                </tr>
+              </table>
+
+              <!-- Duas colunas: Contato + Institucional (stack no mobile) -->
               <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation">
                 <tr>
-                  <td class="fcol" width="46%" valign="top"
-                      style="padding-right:16px;border-right:1px solid rgba(245,231,218,0.12);">
+                  <td class="fcol" width="48%" valign="top" style="padding-right:20px;">
                     <p style="font-family:Inter,Arial,sans-serif;font-size:11px;font-weight:900;
                                letter-spacing:0.16em;text-transform:uppercase;color:#FCB034;margin:0 0 12px;">Contato</p>
-                    <p style="font-family:Inter,Arial,sans-serif;font-size:13px;line-height:1.7;
+                    <p style="font-family:Inter,Arial,sans-serif;font-size:13px;line-height:1.8;
                                color:rgba(245,231,218,0.85);margin:0;">
-                      WhatsApp&nbsp;
                       <a href="https://wa.me/5511924565515?utm_source=email&utm_medium=email&utm_campaign=relancamento-ultimo-dia&utm_content=footer-whatsapp"
                          style="color:rgba(245,231,218,0.85);text-decoration:none;">(11) 92456-5515</a><br>
                       <a href="mailto:vendas@ciadatorta.com.br"
                          style="color:rgba(245,231,218,0.85);text-decoration:none;">vendas@ciadatorta.com.br</a>
                     </p>
                   </td>
-                  <td class="fcol" width="46%" valign="top" style="padding-left:16px;">
+                  <td class="fcol fcol-r" width="52%" valign="top" style="padding-left:20px;">
                     <p style="font-family:Inter,Arial,sans-serif;font-size:11px;font-weight:900;
                                letter-spacing:0.16em;text-transform:uppercase;color:#FCB034;margin:0 0 12px;">Institucional</p>
-                    <p style="font-family:Inter,Arial,sans-serif;font-size:13px;line-height:1.7;margin:0;">
+                    <p style="font-family:Inter,Arial,sans-serif;font-size:13px;line-height:1.8;margin:0;">
                       <a href="https://ciadatorta.com.br/faq?utm_source=email&utm_medium=email&utm_campaign=relancamento-ultimo-dia&utm_content=footer-faq"
                          style="color:rgba(245,231,218,0.85);text-decoration:none;">Perguntas frequentes</a><br>
                       <a href="https://ciadatorta.com.br/politica-de-privacidade?utm_source=email&utm_medium=email&utm_campaign=relancamento-ultimo-dia&utm_content=footer-privacidade"
@@ -266,46 +334,21 @@
                 </tr>
               </table>
 
+              <!-- Divider 2 -->
               <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation"
-                     style="margin:24px 0 20px;">
+                     style="margin:28px 0 20px;">
                 <tr>
-                  <td style="border-top:1px solid rgba(245,231,218,0.12);font-size:0;line-height:0;"></td>
+                  <td style="border-top:1px solid rgba(245,231,218,0.14);font-size:0;line-height:0;height:1px;">&nbsp;</td>
                 </tr>
               </table>
 
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" role="presentation"
-                     style="margin-bottom:20px;">
-                <tr>
-                  <td align="center">
-                    <a href="https://instagram.com/ciadatortaoficial?utm_source=email&utm_medium=email&utm_campaign=relancamento-ultimo-dia&utm_content=footer-instagram"
-                       style="display:inline-block;margin:0 6px;text-decoration:none;">
-                      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;">
-                        <rect width="36" height="36" rx="18" fill="#FCB034"/>
-                        <path d="M18 7C12 7 7 12 7 18s5 11 11 11 11-5 11-11S24 7 18 7zm0 1.98c2.94 0 3.29.01 4.45.06 1.07.05 1.66.22 2.04.37.52.2.88.44 1.27.82.39.39.63.75.82 1.27.15.39.32.97.37 2.04.05 1.16.06 1.51.06 4.45s-.01 3.29-.06 4.45c-.05 1.07-.22 1.66-.37 2.04-.2.52-.44.88-.82 1.27-.39.39-.75.63-1.27.82-.39.15-.97.32-2.04.37-1.16.05-1.51.06-4.45.06s-3.29-.01-4.45-.06c-1.07-.05-1.66-.22-2.04-.37a3.4 3.4 0 0 1-1.27-.82 3.4 3.4 0 0 1-.82-1.27c-.15-.39-.32-.97-.37-2.04C9.01 21.29 9 20.94 9 18s.01-3.29.06-4.45c.05-1.07.22-1.66.37-2.04.2-.52.44-.88.82-1.27a3.4 3.4 0 0 1 1.27-.82c.39-.15.97-.32 2.04-.37C14.71 8.99 15.06 8.98 18 8.98z" fill="white"/>
-                        <path d="M18 12.35a5.65 5.65 0 1 0 0 11.3 5.65 5.65 0 0 0 0-11.3zm0 1.98a3.67 3.67 0 1 1 0 7.34 3.67 3.67 0 0 1 0-7.34z" fill="white"/>
-                        <circle cx="23.88" cy="12.13" r="1.32" fill="white"/>
-                      </svg>
-                    </a>
-                    <a href="https://wa.me/5511924565515?utm_source=email&utm_medium=email&utm_campaign=relancamento-ultimo-dia&utm_content=footer-wa-icon"
-                       style="display:inline-block;margin:0 6px;text-decoration:none;">
-                      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;">
-                        <rect width="36" height="36" rx="18" fill="#FCB034"/>
-                        <g transform="translate(3.24 3.24) scale(0.82)">
-                          <path d="M18 6C11.37 6 6 11.37 6 18c0 2.3.63 4.45 1.73 6.29L6 30l5.87-1.54A12 12 0 1 0 18 6z" fill="white"/>
-                          <path d="M14.4 12.8c-.25-.57-.51-.58-.75-.59h-.65c-.21 0-.57.09-.87.41-.3.33-1.16 1.14-1.16 2.78s1.19 3.22 1.36 3.44c.17.23 2.33 3.73 5.72 5.08.8.34 1.42.55 1.9.7.8.26 1.53.22 2.1.14.65-.1 2-.82 2.28-1.61.28-.8.28-1.48.2-1.62-.09-.14-.3-.23-.64-.4-.33-.17-1.96-.97-2.27-1.08-.3-.12-.53-.17-.75.17-.22.34-.86 1.08-1.05 1.31-.2.22-.39.25-.72.08-.34-.17-1.41-.52-2.69-1.66-.99-.89-1.66-1.99-1.85-2.33-.2-.33-.02-.52.15-.68.15-.16.33-.4.5-.59.17-.2.22-.34.33-.56.12-.23.06-.43-.02-.6-.08-.18-.76-1.83-1.02-2.49z" fill="#FCB034"/>
-                        </g>
-                      </svg>
-                    </a>
-                  </td>
-                </tr>
-              </table>
-
+              <!-- Copyright -->
               <p style="font-family:Inter,Arial,sans-serif;font-size:11px;text-align:center;
-                         color:rgba(245,231,218,0.5);line-height:1.7;margin:0;">
+                         color:rgba(245,231,218,0.55);line-height:1.8;margin:0;">
                 © 2026 Cia da Torta · uma marca Artesania Alimentos LTDA<br>
-                <a href="https://ciadatorta.com.br" style="color:rgba(245,231,218,0.5);text-decoration:none;">ciadatorta.com.br</a>
+                <a href="https://ciadatorta.com.br" style="color:rgba(245,231,218,0.55);text-decoration:none;">ciadatorta.com.br</a>
                 &nbsp;·&nbsp;
-                <a href="*|UNSUB|*" style="color:rgba(245,231,218,0.5);text-decoration:underline;">descadastrar</a>
+                <a href="*|UNSUB|*" style="color:rgba(245,231,218,0.55);text-decoration:underline;">descadastrar</a>
               </p>
             </td>
           </tr>
