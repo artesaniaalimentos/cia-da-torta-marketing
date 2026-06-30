@@ -13,6 +13,7 @@ campanhas/
 
 ## URLs publicadas
 
+- **Julho · Semana 07.07 (Café da tarde · Doces · Quiches)**: https://artesaniaalimentos.github.io/cia-da-torta-marketing/campanhas/julho-07-07-campanhas/
 - **Último dia (relançamento)**: https://artesaniaalimentos.github.io/cia-da-torta-marketing/campanhas/ultimo-dia-relancamento/
 
 ## Como usar no Mailchimp
